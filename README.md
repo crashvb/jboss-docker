@@ -25,8 +25,9 @@ The embedded entrypoint script is located at `/etc/entrypoint.d/10jboss` and per
 ├─ etc/
 │  └─ entrypoint.d/
 │     └─ 10jboss
-├─ root/
-│  └─ jboss_password
+├─ run/
+│  └─ secrets/
+│     └─ jboss_password
 └─ usr/
    └─ share/
       └─ jboss/
@@ -34,7 +35,7 @@ The embedded entrypoint script is located at `/etc/entrypoint.d/10jboss` and per
 
 ### Exposed Ports
 
-Note: The Web Managment Console port (`9990`) is not automatically exposed for security reasons.
+Note: The management ports (`9990` and `9999`) are not automatically exposed for security reasons.
 
 * `8080/tcp` - Unencrypted connection between deployed web applications and clients.
 * `9990/tcp` - HTTP management endpoint.

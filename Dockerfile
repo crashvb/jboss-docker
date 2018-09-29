@@ -26,4 +26,4 @@ ADD supervisord.jboss.conf /etc/supervisor/conf.d/jboss.conf
 # Configure: entrypoint
 ADD entrypoint.jboss /etc/entrypoint.d/10jboss
 
-EXPOSE 8080/tcp 9990/tcp 9999/tcp
+EXPOSE 8080/tcp
