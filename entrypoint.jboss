@@ -6,17 +6,8 @@ set -e
 if [[ ! -e $EP_RUN ]] ; then
 	log "Configuring $(basename $0) for first run ..."
 
-	if [[ -f /run/secrets/jboss_password ]] ; then
-		log "Importing JBOSS_PASSWORD from secrets file ..."
-		JBOSS_PASSWORD=$(cat /run/secrets/jboss_password)
-	elif [[ -n "$JBOSS_PASSWORD" ]] ; then
-		log "Importing JBOSS_PASSWORD from environment variable ..."
-	else
-		log "Generating JBOSS_PASSWORD ..."
-		export JBOSS_PASSWORD=$(pwgen --capitalize --numerals --secure -1 32)
-		install --mode=0400 /dev/null /root/jboss_password
-		echo "JBOSS_PASSWORD=$JBOSS_PASSWORD" > /root/jboss_password
-	fi
+	# Generate passwords
+	generate_password jboss
 
 	log "Creating admin user ..."
 	su --command="$JBOSS_HOME/bin/add-user.sh --silent=true admin $JBOSS_PASSWORD" --preserve-environment jboss
