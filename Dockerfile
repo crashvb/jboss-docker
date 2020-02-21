@@ -1,16 +1,14 @@
-FROM crashvb/supervisord:ubuntu
+FROM crashvb/supervisord:202002211640
 LABEL maintainer "Richard Davis <crashvb@gmail.com>"
 
 # Install packages, download files ...
 ENV JBOSS_HOME=/usr/share/jboss
-RUN echo "deb http://ppa.launchpad.net/openjdk-r/ppa/ubuntu $(cat /etc/os-release | grep ^VERSION_CODENAME | awk -F= '{print $2}') main" > "/etc/apt/sources.list.d/openjdk-r-ubuntu-ppa.list" && \
-	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys EB9B1D8886F44E2A && \
-	apt-get update && \
-	docker-apt openjdk-7-jdk && \
-	mkdir --parents ${JBOSS_HOME} && \
+# Note: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
+RUN mkdir --parents ${JBOSS_HOME} /usr/share/man/man1 && \
+	docker-apt gnupg openjdk-8-jdk-headless && \
 	wget --quiet --output-document=- http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.tar.gz | \
 	tar --directory=${JBOSS_HOME} --extract --gzip --strip-components=1 && \
-	wget --quiet --output-document=${JBOSS_HOME}/jboss-modules.jar http://repo1.maven.org/maven2/org/jboss/modules/jboss-modules/1.1.5.GA/jboss-modules-1.1.5.GA.jar
+	wget --quiet --output-document=${JBOSS_HOME}/jboss-modules.jar https://repo1.maven.org/maven2/org/jboss/modules/jboss-modules/1.1.5.GA/jboss-modules-1.1.5.GA.jar
 
 # Configure: jboss
 RUN useradd --comment="JBoss Daemon" --home=${JBOSS_HOME} --shell=/bin/bash jboss && \
