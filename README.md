@@ -1,5 +1,10 @@
 # jboss-docker
 
+[![version)](https://img.shields.io/docker/v/crashvb/jboss/latest)](https://hub.docker.com/repository/docker/crashvb/jboss)
+[![image size](https://img.shields.io/docker/image-size/crashvb/jboss/latest)](https://hub.docker.com/repository/docker/crashvb/jboss)
+[![linting](https://img.shields.io/badge/linting-hadolint-yellow)](https://github.com/hadolint/hadolint)
+[![license](https://img.shields.io/github/license/crashvb/jboss-docker.svg)](https://github.com/crashvb/jboss-docker/blob/master/LICENSE.md)
+
 ## Overview
 
 This docker image contains [JBoss](https://jboss.org/).
@@ -14,7 +19,7 @@ The embedded entrypoint script is located at `/etc/entrypoint.d/10jboss` and per
 
  | Variable | Default Value | Description |
  | ---------| ------------- | ----------- |
- | JBOSS_PASSWORD | _random_ | The jboss `admin` password. |
+ | JBOSS\_PASSWORD | _random_ | The jboss `admin` password. |
 
 ## Standard Configuration
 

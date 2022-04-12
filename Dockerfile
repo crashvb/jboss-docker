@@ -31,9 +31,9 @@ RUN echo "export JBOSS_HOME=${JBOSS_HOME}" > /etc/profile.d/jboss.sh && \
 	chmod 0755 /etc/profile.d/jboss.sh
 
 # Configure: supervisor
-ADD supervisord.jboss.conf /etc/supervisor/conf.d/jboss.conf
+COPY supervisord.jboss.conf /etc/supervisor/conf.d/jboss.conf
 
 # Configure: entrypoint
-ADD entrypoint.jboss /etc/entrypoint.d/10jboss
+COPY entrypoint.jboss /etc/entrypoint.d/10jboss
 
 EXPOSE 8080/tcp
