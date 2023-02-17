@@ -1,15 +1,15 @@
 #!/bin/bash
 
-set -e
+set -e -o pipefail
 
 # Configure: jboss
-if [[ ! -e $EP_RUN ]] ; then
-	log "Configuring $(basename $0) for first run ..."
+if [[ ! -e "${EP_RUN}" ]] ; then
+	log "Configuring $(basename "${0}") for first run ..."
 
 	# Generate passwords
 	generate_password jboss
 
 	log "Creating admin user ..."
-	su --command="$JBOSS_HOME/bin/add-user.sh --silent=true admin $JBOSS_PASSWORD" --preserve-environment jboss
+	su --command="${JBOSS_HOME}/bin/add-user.sh --silent=true admin ${JBOSS_PASSWORD}" --preserve-environment jboss
 fi
 

@@ -1,10 +1,10 @@
-FROM crashvb/supervisord:202201080446@sha256:8fe6a411bea68df4b4c6c611db63c22f32c4a455254fa322f381d72340ea7226
+FROM crashvb/supervisord:202302172026@sha256:50dc33115f72bbb9e00dce460e2297fdad67e07cc7fca44f3e35cade92e27058
 ARG org_opencontainers_image_created=undefined
 ARG org_opencontainers_image_revision=undefined
 LABEL \
 	org.opencontainers.image.authors="Richard Davis <crashvb@gmail.com>" \
-	org.opencontainers.image.base.digest="sha256:8fe6a411bea68df4b4c6c611db63c22f32c4a455254fa322f381d72340ea7226" \
-	org.opencontainers.image.base.name="crashvb/supervisord:202201080446" \
+	org.opencontainers.image.base.digest="sha256:50dc33115f72bbb9e00dce460e2297fdad67e07cc7fca44f3e35cade92e27058" \
+	org.opencontainers.image.base.name="crashvb/supervisord:202302172026" \
 	org.opencontainers.image.created="${org_opencontainers_image_created}" \
 	org.opencontainers.image.description="Image containing jboss." \
 	org.opencontainers.image.licenses="Apache-2.0" \
@@ -16,6 +16,7 @@ LABEL \
 # Install packages, download files ...
 ENV JBOSS_HOME=/usr/share/jboss
 # Note: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199
+# hadolint ignore=DL4006
 RUN mkdir --parents ${JBOSS_HOME} /usr/share/man/man1 && \
 	docker-apt gnupg openjdk-8-jdk-headless && \
 	wget --quiet --output-document=- http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.tar.gz | \
