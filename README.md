@@ -29,7 +29,9 @@ The embedded entrypoint script is located at `/etc/entrypoint.d/10jboss` and per
 /
 ├─ etc/
 │  ├─ entrypoint.d/
-│  │  └─ 10jboss
+│  │  └─ jboss
+│  ├─ healthcheck.d/
+│  │  └─ jboss
 │  └─ supervisor/
 │     └─ config.d/
 │        └─ jboss.conf
